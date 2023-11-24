@@ -11,12 +11,14 @@ class ToDoList:
         self.cursor.execute(f"INSERT INTO {self.list_name} VALUES ('{task_name}')")
         print("Task added Successfully")
 
-    def delete_task(self, task_id):
+    def delete_task(self, task_name):
         # Deleting a particular key from the dictionary
-        if task_id not in self.task_details.keys():
+        all_names = list(self.cursor.execute(f"SELECT name FROM {self.list_name}"))
+        if task_name not in all_names:
             print(Fore.YELLOW + "No Such task found")
             return
-        del self.task_details[task_id]
+        # del self.task_details[task_id]
+        self.cursor.execute(f"DELETE FROM {self.list_name} WHERE name={task_name};")
         print(Fore.YELLOW + "Task deleted Successfully")
 
     def list_task(self):
