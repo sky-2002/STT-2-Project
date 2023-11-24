@@ -21,7 +21,7 @@ class ToDoList:
             print(Fore.YELLOW + "No Such task found")
             return
         # del self.task_details[task_id]
-        self.cursor.execute(f"DELETE FROM {self.list_name} WHERE name LIKE {task_name};")
+        self.connection.execute(f"DELETE FROM {self.list_name} WHERE name LIKE ?;", (task_name,))
         print(Fore.YELLOW + "Task deleted Successfully")
 
     def list_task(self):
