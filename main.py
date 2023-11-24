@@ -6,7 +6,6 @@ connection = sqlite3.connect("todo.db")
 
 cursor = connection.cursor()
 
-cursor.execute("DROP TABLE demo")
 todo = ToDoList(cursor=cursor, list_name="demo")
 
 while True:

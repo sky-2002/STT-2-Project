@@ -5,7 +5,7 @@ class ToDoList:
         # self.task_completed = {} # When completed it remove task from task details add it to task completed
         self.cursor = cursor
         self.list_name = list_name
-        self.cursor.execute(f"CREATE TABLE {self.list_name} (name TEXT)")
+        self.cursor.execute(f"CREATE TABLE IF NOT EXISTS {self.list_name} (name TEXT)")
 
     def add_task(self, task_name):
         self.cursor.execute(f"INSERT INTO {self.list_name} VALUES ('{task_name}')")
