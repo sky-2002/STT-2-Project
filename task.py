@@ -24,5 +24,5 @@ class ToDoList:
     def list_task(self):
         rows = self.cursor.execute(f"SELECT * FROM {self.list_name}").fetchall
         print(Fore.LIGHTGREEN_EX + "Task details")
-        for i, task in self.task_details.items():
-            print(Fore.GREEN + f"{i}. Title: {task}")
+        for row in rows:
+            print(Fore.GREEN + f"ID: {row[0]}, Task: {row[1]}")
