@@ -6,7 +6,8 @@ connection = sqlite3.connect("todo.db")
 
 cursor = connection.cursor()
 
-todo = ToDoList(cursor=cursor)
+cursor.execute("DROP TABLE demo")
+todo = ToDoList(cursor=cursor, list_name="demo")
 
 while True:
     # print options for user
@@ -31,7 +32,7 @@ while True:
         # If input is 3, first show all current tasks
         # then take input and delete the required task
         todo.list_task()
-        i = int(input(Fore.RED + "Enter task name:"))
+        i = input(Fore.RED + "Enter task name:")
         todo.delete_task(i)
 
     elif usr_input == 4:

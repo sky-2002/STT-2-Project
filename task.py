@@ -13,7 +13,8 @@ class ToDoList:
 
     def delete_task(self, task_name):
         # Deleting a particular key from the dictionary
-        all_names = list(self.cursor.execute(f"SELECT name FROM {self.list_name}"))
+        all_names = self.cursor.execute(f"SELECT * FROM {self.list_name}").fetchall()[0]
+        print(all_names)
         if task_name not in all_names:
             print(Fore.YELLOW + "No Such task found")
             return
@@ -22,7 +23,7 @@ class ToDoList:
         print(Fore.YELLOW + "Task deleted Successfully")
 
     def list_task(self):
-        rows = self.cursor.execute(f"SELECT * FROM {self.list_name}").fetchall
+        rows = list(self.cursor.execute(f"SELECT * FROM {self.list_name}").fetchall())
         print(Fore.LIGHTGREEN_EX + "Task details")
         for row in rows:
-            print(Fore.GREEN + f"ID: {row[0]}, Task: {row[1]}")
+            print(Fore.GREEN + f"Task: {row[0]}")
