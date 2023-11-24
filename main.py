@@ -6,7 +6,7 @@ connection = sqlite3.connect("todo.db")
 
 cursor = connection.cursor()
 
-todo = ToDoList(cursor=cursor, list_name="demo")
+todo = ToDoList(cursor=cursor, list_name="demo", connection=connection)
 
 while True:
     # print options for user
